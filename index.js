@@ -1,5 +1,6 @@
 var express = require('express');
 var nutritionTips = require('./tips.json');
+var tipCount = require('./properties.json');
 var motivation = require('./motivateURL.json');
 const app = express();
 
@@ -13,9 +14,21 @@ app.listen(REST_PORT, function() {
 app.get('/nutrition', function(req, res) {
     var jsonResponse = [];
     //console.log(tip);
-    var ran = Math.floor((Math.random() * 10));
+    var ran = Math.floor((Math.random() * tipCount[0].nutritionCount));
     console.log(ran);
-    jsonResponse.push({ "text": nutritionTips[ran].tip});
+    jsonResponse.push({
+      "text": nutritionTips[ran].tip,
+      "quick_replies": [
+          {
+          "title":"Main Menu",
+          "block_names":["Default answer"]
+        },
+        {
+          "title":"More",
+          "block_names":["Nutrition"]
+        }
+      ]
+});
     console.log(nutritionTips[ran].tip);
     res.send(jsonResponse);
 });
@@ -23,7 +36,7 @@ app.get('/nutrition', function(req, res) {
 app.get('/motivation', function(req, res) {
     var jsonResponse = [];
     //console.log(tip);
-    var ran = Math.floor((Math.random() * 10));
+    var ran = Math.floor((Math.random() * tipCount[0].motivationCount));
     console.log(ran);
     jsonResponse.push({
       "attachment": {
