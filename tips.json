@@ -37,5 +37,9 @@
         {
             "id": 10,
             "tip": "Use 1 to 10 rule. For every 10 grams of carbohydrate listed on the label, look for at least one gram of fiber."
+        },
+        {
+            "id": 11,
+            "tip": "The browner the banana, the greater the amount of sugar and the less resistant starch it contains. Go for green bananas which are lower in sugar and higher in resistant starch - resistant starch will prevent blood sugar and keep you full."
         }
     ]
