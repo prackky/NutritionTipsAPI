@@ -1,5 +1,6 @@
 var express = require('express');
 var nutritionTips = require('./tips.json');
+var yogaTips = require('./yogaTips.json');
 var motivation = require('./motivateURL.json');
 const app = express();
 
@@ -57,5 +58,27 @@ app.get('/motivation', function(req, res) {
       ]}
       );
     console.log(motivation[ran].url);
+    res.send(jsonResponse);
+});
+
+app.get('/yoga', function(req, res) {
+    var jsonResponse = [];
+    //console.log(tip);
+    var ran = Math.floor((Math.random() * yogaTips.length));
+    console.log(ran);
+    jsonResponse.push({
+      "text": yogaTips[ran].tip,
+      "quick_replies": [
+          {
+          "title":"Main Menu",
+          "block_names":["Default answer"]
+        },
+        {
+          "title":"More",
+          "block_names":["Yoga"]
+        }
+      ]
+});
+    console.log(yogaTips[ran].tip);
     res.send(jsonResponse);
 });
