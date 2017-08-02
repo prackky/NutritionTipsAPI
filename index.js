@@ -1,6 +1,5 @@
 var express = require('express');
 var nutritionTips = require('./tips.json');
-var tipCount = require('./properties.json');
 var motivation = require('./motivateURL.json');
 const app = express();
 
@@ -14,7 +13,7 @@ app.listen(REST_PORT, function() {
 app.get('/nutrition', function(req, res) {
     var jsonResponse = [];
     //console.log(tip);
-    var ran = Math.floor((Math.random() * tipCount[0].nutritionCount));
+    var ran = Math.floor((Math.random() * nutritionTips.length));
     console.log(ran);
     jsonResponse.push({
       "text": nutritionTips[ran].tip,
@@ -36,7 +35,8 @@ app.get('/nutrition', function(req, res) {
 app.get('/motivation', function(req, res) {
     var jsonResponse = [];
     //console.log(tip);
-    var ran = Math.floor((Math.random() * tipCount[0].motivationCount));
+    var ran = Math.floor((Math.random() * motivation.length));
+    console.log(motivation.length);
     console.log(ran);
     jsonResponse.push({
       "attachment": {
