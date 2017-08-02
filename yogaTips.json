@@ -1,33 +1,33 @@
 [{
             "id": 1,
-            "tip": "https://s-media-cache-ak0.pinimg.com/564x/a5/f5/ad/a5f5ad1aa41a3b3ff217fa3c5d744580.jpg"
+            "url": "https://s-media-cache-ak0.pinimg.com/564x/a5/f5/ad/a5f5ad1aa41a3b3ff217fa3c5d744580.jpg"
         },
         {
             "id": 2,
-            "tip": "https://s-media-cache-ak0.pinimg.com/564x/52/53/df/5253df129a735f179efc7bbc3a718a28.jpg"
+            "url": "https://s-media-cache-ak0.pinimg.com/564x/52/53/df/5253df129a735f179efc7bbc3a718a28.jpg"
         },
         {
             "id": 3,
-            "tip": "https://s-media-cache-ak0.pinimg.com/564x/bc/b9/ad/bcb9ad4050fc0ae310524ef92d02e20d.jpg"
+            "url": "https://s-media-cache-ak0.pinimg.com/564x/bc/b9/ad/bcb9ad4050fc0ae310524ef92d02e20d.jpg"
         },
         {
             "id": 4,
-            "tip": "https://s-media-cache-ak0.pinimg.com/564x/ba/41/ee/ba41ee7102a6d29cb4154a15e45d4498.jpg"
+            "url": "https://s-media-cache-ak0.pinimg.com/564x/ba/41/ee/ba41ee7102a6d29cb4154a15e45d4498.jpg"
         },
         {
             "id": 5,
-            "tip": "https://s-media-cache-ak0.pinimg.com/564x/ab/0a/6a/ab0a6a0d6a54e593fe1a4a5367da0528.jpg"
+            "url": "https://s-media-cache-ak0.pinimg.com/564x/ab/0a/6a/ab0a6a0d6a54e593fe1a4a5367da0528.jpg"
         },
         {
             "id": 6,
-            "tip": "https://s-media-cache-ak0.pinimg.com/564x/26/1f/e6/261fe6a39406f0cf0f99b49ea266b8fe.jpg"
+            "url": "https://s-media-cache-ak0.pinimg.com/564x/26/1f/e6/261fe6a39406f0cf0f99b49ea266b8fe.jpg"
         },
         {
             "id": 7,
-            "tip": "https://s-media-cache-ak0.pinimg.com/564x/50/f3/2e/50f32ece05e44e983a4b2cd57fc6f163.jpg"
+            "url": "https://s-media-cache-ak0.pinimg.com/564x/50/f3/2e/50f32ece05e44e983a4b2cd57fc6f163.jpg"
         },
         {
             "id": 8,
-            "tip": "https://s-media-cache-ak0.pinimg.com/564x/02/ee/55/02ee555745c7a01a3b4efd3ceb6a760e.jpg"
+            "url": "https://s-media-cache-ak0.pinimg.com/564x/02/ee/55/02ee555745c7a01a3b4efd3ceb6a760e.jpg"
         }
     ]
