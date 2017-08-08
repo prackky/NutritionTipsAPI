@@ -11,6 +11,11 @@ app.listen(REST_PORT, function() {
     console.log('Chatfuel Bot-Server listening on port ' + REST_PORT);
 });
 
+app.get("/playMeditation", function (request, response){
+     //show this file when the "/" is requested
+     response.sendFile(__dirname+"/html/play.html");
+ });
+
 app.get('/nutrition', function(req, res) {
     var jsonResponse = [];
     //console.log(tip);
