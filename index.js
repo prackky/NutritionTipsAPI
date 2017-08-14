@@ -93,3 +93,9 @@ app.get('/yogaTips', function(req, res) {
     console.log(yogaTips[ran].url);
     res.send(jsonResponse);
 });
+
+app.get('/user', function(req, res) {
+    //var jsonResponse = [];
+    console.log(req.OriginalUrl);
+    
+});
