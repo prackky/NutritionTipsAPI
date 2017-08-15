@@ -1,7 +1,4 @@
 var express = require('express');
-var nutritionTips = require('./tips.json');
-var yogaTips = require('./yogaTips.json');
-var motivation = require('./motivateURL.json');
 var callback = require('./modules/Modules');
 const app = express();
 
