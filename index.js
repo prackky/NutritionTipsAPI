@@ -1,12 +1,26 @@
 var express = require('express');
 var callback = require('./modules/Modules');
+var user = require('./controller/users');
+var mongoose = require ("mongoose");
+var youtube = require("./controller/youtubeController");
 const app = express();
 
 const REST_PORT = (process.env.PORT || 3000);
+var uristring = 
+  process.env.MONGODB_URI || 
+  'mongodb://pracky:genuinely@knowshipp-shard-00-00-ik0ru.mongodb.net:27017,knowshipp-shard-00-01-ik0ru.mongodb.net:27017,knowshipp-shard-00-02-ik0ru.mongodb.net:27017/gymboDB?ssl=true&replicaSet=knowshipp-shard-0&authSource=admin';
 //app.use(bodyParser.json());
 
+mongoose.connect(uristring, function (err, res) {
+  if (err) { 
+    console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+  } else {
+    console.log ('Succeeded connected to: ' + uristring);
+  }
+});
+
 app.listen(REST_PORT, function() {
-    console.log('Chatfuel Bot-Server listening on port ' + REST_PORT);
+    console.log('Bot-Server listening on port ' + REST_PORT);
 });
 
 app.get("/playMeditation", function (request, response){
@@ -19,11 +33,7 @@ app.get('/motivation', callback.motivationTipsCB);
 
 app.get('/yogaTips', callback.yogaTipsCB);
 
-app.get('/user/*', function(req, res) {
-    //var jsonResponse = [];
-    //var correctRequest = decodeURIComponent((req.query).replace(/\+/g, ''));
-    //console.log(req.query["messenger user id"]);
-    console.log(req.params['0']);
-    //console.log(req.query)
-    
-});
+app.get('/user', user.userSave);
+
+app.get('/videoChannel', youtube.youtubeController);
+
