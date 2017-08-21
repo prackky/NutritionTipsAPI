@@ -5,7 +5,7 @@ var callAPI = function(resource, qs, callback) {
 
     if(resource == 'videoSearch'){
         //console.log("value of qs "+qs.res_id);
-        resource = "?" + "part=snippet&order=rating&" + "q="+ qs.search+ "&type=video&videoDefinition=high&";
+        resource = "?" + "part=snippet&order=viewcount&" + "q="+ qs.search+ "&type=video&videoDefinition=high&";
         console.log(resource);
     }
 

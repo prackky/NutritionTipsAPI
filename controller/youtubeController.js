@@ -20,8 +20,7 @@ module.exports = {
                     let parsedJSON = JSON.parse(res.body) || {};
                     //console.log(parsedJSON);
                     let videoData = parsedJSON;
-                    let elementsData = [];
-                    loopVideos(videoData, elementsData, (elementsData) => {
+                    loopVideos(videoData, (elementsData) => {
                         var messageData = [{
                             "attachment": {
                                 "type": "template",
@@ -42,11 +41,12 @@ module.exports = {
     }
 }
 
-var loopVideos = function (videoData, elementsData, done) {
-    for (var i = 0; i < 5; i++) {
+var loopVideos = function (videoData, done) {
+    let elementsData = [];
+    for (var i = 0; i < videoData.pageInfo.resultsPerPage; i++) {
         elementsData[i] = {
             "title": videoData.items[i].snippet.title,
-            "imageUrl": videoData.items[i].snippet.thumbnails.medium.url || imageUrl,
+            "imageUrl": videoData.items[i].snippet.thumbnails.high.url || imageUrl,
             "subtitle": videoData.items[i].snippet.description,
             "buttons": [{
                     "type": "web_url",
