@@ -1,6 +1,6 @@
 module.exports = require("../libs/youtube").Youtube;
 var YoutubeAPI = require(__dirname + '/youtubeController');
-var YOUTUBE_ACCESS_TOKEN = "AIzaSyDONFWCY6lo0xnejz3xC8Dj1Zn9ede7e-g";
+var YOUTUBE_ACCESS_TOKEN = process.env.YOUTUBE_ACCESS_TOKEN;
 
 var api = new YoutubeAPI(YOUTUBE_ACCESS_TOKEN);
 
