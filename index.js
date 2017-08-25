@@ -6,11 +6,9 @@ var youtube = require("./controller/youtubeController");
 const app = express();
 
 const REST_PORT = (process.env.PORT || 3000);
-var uristring = 
-  process.env.MONGODB_URI;
+var uristring = process.env.MONGODB_URI;
 
-app.use(bodyParser.json());
-
+//app.use(bodyParser.json());
 mongoose.connect(uristring, function (err, res) {
   if (err) { 
     console.log ('ERROR connecting to: ' + uristring + '. ' + err);
