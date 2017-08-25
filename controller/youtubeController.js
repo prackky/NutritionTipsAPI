@@ -6,9 +6,9 @@ const YOUTUBE_ACCESS_TOKEN = "AIzaSyDONFWCY6lo0xnejz3xC8Dj1Zn9ede7e-g";
 var api = new YoutubeAPI(YOUTUBE_ACCESS_TOKEN);
 
 var imageUrl = "https://s19.postimg.org/y6pd8dn4j/No_image_available.png";
-const youtubeURL = "https://www.youtube.com/embed/";
-//var youtubeURL = "https://www.youtube.com/watch?v=";
-const frameURL = "https://3c40d222.ngrok.io/youtubeVideo/";
+//const youtubeURL = "https://www.youtube.com/embed/";
+var youtubeURL = "https://www.youtube.com/watch?v=";
+const frameURL = "https://sheltered-dawn-53620.herokuapp.com/youtubeVideo/";
 //const frameURL = "https://sheltered-dawn-53620.herokuapp.com/youtubeVideo/";
 
 module.exports = {
