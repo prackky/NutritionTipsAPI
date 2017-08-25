@@ -1,11 +1,15 @@
 module.exports = require("../libs/youtube").Youtube;
 var YoutubeAPI = require(__dirname + '/youtubeController');
-var YOUTUBE_ACCESS_TOKEN = process.env.YOUTUBE_ACCESS_TOKEN;
+const YOUTUBE_ACCESS_TOKEN = "AIzaSyDONFWCY6lo0xnejz3xC8Dj1Zn9ede7e-g";
+//var YOUTUBE_ACCESS_TOKEN = process.env.YOUTUBE_ACCESS_TOKEN;
 
 var api = new YoutubeAPI(YOUTUBE_ACCESS_TOKEN);
 
 var imageUrl = "https://s19.postimg.org/y6pd8dn4j/No_image_available.png";
-var youtubeURL = "https://www.youtube.com/watch?v=";
+const youtubeURL = "https://www.youtube.com/embed/";
+//var youtubeURL = "https://www.youtube.com/watch?v=";
+const frameURL = "https://3c40d222.ngrok.io/youtubeVideo/";
+//const frameURL = "https://sheltered-dawn-53620.herokuapp.com/youtubeVideo/";
 
 module.exports = {
     youtubeController: function (request, response) {
@@ -69,9 +73,14 @@ var loopVideos = function (videoData, done) {
                 "subtitle": videoData.items[i].snippet.description,
                 "buttons": [{
                     "type": "web_url",
-                    "url": youtubeURL + videoData.items[i].id.videoId,
-                    "title": "Watch Youtube Video"
-                }]
+                    "url": frameURL + videoData.items[i].id.videoId,
+                    "title": "Watch Youtube Video",
+                    "webview_height_ratio": "compact"
+                },
+                {
+                    "type":"element_share"
+                }
+            ]
             }
         }
     } catch (err) {

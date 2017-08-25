@@ -8,7 +8,8 @@ const app = express();
 const REST_PORT = (process.env.PORT || 3000);
 var uristring = process.env.MONGODB_URI;
 
-//app.use(bodyParser.json());
+app.set('view engine', 'pug')
+
 mongoose.connect(uristring, function (err, res) {
   if (err) { 
     console.log ('ERROR connecting to: ' + uristring + '. ' + err);
@@ -26,6 +27,11 @@ app.get('/nutrition', callback.nutritionTipsCB);
 app.get('/motivation', callback.motivationTipsCB);
 
 app.get('/yogaTips', callback.yogaTipsCB);
+
+app.get('/youtubeVideo/*', function (req, res) {
+  console.log(req.params['0']);
+  res.render('index', { title : 'Video', source: req.params['0'] })
+})
 
 app.get('/user', user.userSave);
 
