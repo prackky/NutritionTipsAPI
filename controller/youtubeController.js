@@ -19,7 +19,7 @@ module.exports = {
                 let options = {
                     search: request.query.q, // user query received in request
                     part: "snippet",
-                    order: request.query.order || "relevance", // if user provides order set the value else set as viewcount
+                    order: request.query.order || "viewCount", // if user provides order set the value else set as viewcount
                     type: request.query.type || "video",
                     videoDefinition: request.query.videoDefinition || "any",
                     videoType: "any",
@@ -28,7 +28,7 @@ module.exports = {
                 //*********************function to search the video on youtube - START ***************************
                 api.getVideoSearch(options, (err, res) => {
                     if (err) {
-                        console.log("error received in abs search API...")
+                        console.log("error received in search API...")
                     } else {
                         let videoData = JSON.parse(res.body) || {};
                         console.log(videoData); //comment this console log
@@ -43,9 +43,12 @@ module.exports = {
                                     }
                                 }
                             }];
-                            response.send(messageData || [{
-                                "text": "Sorry, video service is not available right now..."
-                            }]);
+                            if(elementsData){
+                            response.send(messageData);
+                        }
+                        else{
+                            response.send([{"text":"We are experiencing high load, please try again a bit later. Thank you!"}]);
+                        }
                             //console.log("messageData = " + JSON.stringify(messageData)); //comment this console log
                         });
                     }
