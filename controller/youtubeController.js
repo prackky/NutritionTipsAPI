@@ -3,7 +3,7 @@ var YoutubeAPI = require(__dirname + '/youtubeController');
 var YOUTUBE_ACCESS_TOKEN = process.env.YOUTUBE_ACCESS_TOKEN;
 
 const redis = require('redis');
-const REDIS_PORT = process.env.REDIS_PORT || 6379;
+const REDIS_PORT = process.env.REDIS_PORT || 18315;
 
 const client = redis.createClient(REDIS_PORT);
 
