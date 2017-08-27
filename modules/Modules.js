@@ -1,6 +1,6 @@
-var nutritionTips = require('../tips.json');
-var yogaTips = require('../yogaTips.json');
-var motivation = require('../motivateURL.json');
+const nutritionTips = require('../tips.json');
+const yogaTips = require('../yogaTips.json');
+const motivation = require('../motivateURL.json');
 
 module.exports = {
     nutritionTipsCB: function (req, res) {
@@ -12,7 +12,7 @@ module.exports = {
             "text": nutritionTips[ran].tip,
             "quick_replies": [{
                     "title": "Main Menu",
-                    "block_names": ["Default answer"]
+                    "block_names": ["Main Menu"]
                 },
                 {
                     "title": "More",
@@ -38,7 +38,7 @@ module.exports = {
             },
             "quick_replies": [{
                     "title": "Main Menu",
-                    "block_names": ["Default answer"]
+                    "block_names": ["Main Menu"]
                 },
                 {
                     "title": "More",
@@ -61,7 +61,7 @@ module.exports = {
             },
             "quick_replies": [{
                     "title": "Main Menu",
-                    "block_names": ["Default answer"]
+                    "block_names": ["Main Menu"]
                 },
                 {
                     "title": "More",

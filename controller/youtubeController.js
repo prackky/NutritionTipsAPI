@@ -1,7 +1,19 @@
 module.exports = require("../libs/youtube").Youtube;
 var YoutubeAPI = require(__dirname + '/youtubeController');
-const YOUTUBE_ACCESS_TOKEN = "AIzaSyDONFWCY6lo0xnejz3xC8Dj1Zn9ede7e-g";
-//var YOUTUBE_ACCESS_TOKEN = process.env.YOUTUBE_ACCESS_TOKEN;
+var YOUTUBE_ACCESS_TOKEN = process.env.YOUTUBE_ACCESS_TOKEN;
+
+const redis = require('redis');
+const REDIS_PORT = process.env.REDIS_PORT || 6379;
+
+const client = redis.createClient(REDIS_PORT);
+
+client.on("error", function (err) {
+    console.log("Error " + err);
+});
+
+client.on('connect', function(){
+    console.log('Connected to Redis');
+});
 
 var api = new YoutubeAPI(YOUTUBE_ACCESS_TOKEN);
 
@@ -43,12 +55,14 @@ module.exports = {
                                     }
                                 }
                             }];
-                            if(elementsData){
-                            response.send(messageData);
-                        }
-                        else{
-                            response.send([{"text":"We are experiencing high load, please try again a bit later. Thank you!"}]);
-                        }
+                            if (elementsData) {
+                                client.setex(request.query.q, 7200, JSON.stringify(messageData));
+                                response.send(messageData);
+                            } else {
+                                response.send([{
+                                    "text": "We are experiencing high load, please try again a bit later. Thank you!"
+                                }]);
+                            }
                             //console.log("messageData = " + JSON.stringify(messageData)); //comment this console log
                         });
                     }
@@ -62,6 +76,18 @@ module.exports = {
                 "text": "Please send the search query for video search..."
             }]);
         }
+    },
+    cache: function (req, res, next) {
+        const query = req.query.q;
+        client.get(query, function (err, data) {
+            if (err) throw err;
+            if (data != null) {
+                //console.log(data);
+                res.send(data);
+            } else {
+                next();
+            }
+        });
     }
 }
 
@@ -69,21 +95,21 @@ module.exports = {
 var loopVideos = function (videoData, done) {
     let elementsData = []; // elementsData is the JSON format array containing cards
     try {
-        for (var i = 0; i < videoData.pageInfo.resultsPerPage ; i++) {
+        for (var i = 0; i < videoData.pageInfo.resultsPerPage; i++) {
             elementsData[i] = {
                 "title": videoData.items[i].snippet.title,
                 "image_url": videoData.items[i].snippet.thumbnails.high.url || imageUrl,
                 "subtitle": videoData.items[i].snippet.description,
                 "buttons": [{
-                    "type": "web_url",
-                    "url": frameURL + videoData.items[i].id.videoId,
-                    "title": "Watch Youtube Video",
-                    "webview_height_ratio": "compact"
-                },
-                {
-                    "type":"element_share"
-                }
-            ]
+                        "type": "web_url",
+                        "url": frameURL + videoData.items[i].id.videoId,
+                        "title": "Watch Youtube Video",
+                        "webview_height_ratio": "compact"
+                    },
+                    {
+                        "type": "element_share"
+                    }
+                ]
             }
         }
     } catch (err) {

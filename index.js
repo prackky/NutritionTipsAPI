@@ -35,9 +35,8 @@ app.get('/youtubeVideo/*', function (req, res) {
 
 app.get('/user', user.userSave);
 
-app.get('/videoChannel', youtube.youtubeController);
+app.get('/videoChannel', youtube.cache, youtube.youtubeController);
 
 app.listen(REST_PORT, function() {
     console.log('Bot-Server listening on port ' + REST_PORT);
 });
-
