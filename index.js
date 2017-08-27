@@ -18,8 +18,6 @@ mongoose.connect(uristring, function (err, res) {
   }
 });
 
-app.use('/player', express.static(__dirname + '/player'));
-app.use('/src', express.static(__dirname + '/player/src'));
 app.get("/playMeditation", function (request, response){
      response.sendFile(__dirname +"/html/index.html");
  });
