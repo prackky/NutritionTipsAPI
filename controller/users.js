@@ -9,20 +9,20 @@ module.exports = {
             first_name: req.query["first name"],
             last_name: req.query["last name"],
             gender: req.query["gender"],
-            yogaSub: "N",
-            meditationSub: "N",
-            exerciseSub: "N",
-            //date_created: Date.now
-            //profile_pic: req.query["profile pic url"],
-            //locale: req.query["locale"]
+            subscription: {
+                yogaSub: "N",
+                meditationSub: "N",
+                exerciseSub: "N",
+            },
+            date_created: Date.now
         });
         user.save(function (err) {
-            if (err) {console.log('Error on save!')
-            res.send({
-                    "text": "already exists..."
-                });
-            }
-            else {
+            if (err) {
+                console.log('Error on save!')
+                res.send([{
+                    "text": ""
+                }]);
+            } else {
                 console.log('success...');
                 res.send({
                     "text": "success..."
