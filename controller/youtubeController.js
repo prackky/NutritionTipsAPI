@@ -1,9 +1,9 @@
 module.exports = require("../libs/youtube").Youtube;
-var YoutubeAPI = require(__dirname + '/youtubeController');
-var YOUTUBE_ACCESS_TOKEN = process.env.YOUTUBE_ACCESS_TOKEN;
+const YoutubeAPI = require(__dirname + '/youtubeController');
+const config = require('../config/main');
+const YOUTUBE_ACCESS_TOKEN = config.YOUTUBE_ACCESS_TOKEN;
 
 const redis = require('redis');
-const config = require('../config/main');
 const REDIS_PORT = config.REDIS_PORT;
 const REDIS_HOST = config.REDIS_HOST;
 
@@ -19,23 +19,23 @@ client.on('connect', function(){
 
 var api = new YoutubeAPI(YOUTUBE_ACCESS_TOKEN);
 
-var imageUrl = "https://s19.postimg.org/y6pd8dn4j/No_image_available.png";
+const imageUrl = "https://s19.postimg.org/y6pd8dn4j/No_image_available.png";
 //const youtubeURL = "https://www.youtube.com/embed/";
-var youtubeURL = "https://www.youtube.com/watch?v=";
+const youtubeURL = "https://www.youtube.com/watch?v=";
 const frameURL = "https://sheltered-dawn-53620.herokuapp.com/youtubeVideo/";
 //const frameURL = "https://sheltered-dawn-53620.herokuapp.com/youtubeVideo/";
 
 module.exports = {
     youtubeController: function (request, response) {
-        //console.log(request);
+        console.log(request);
         if (request.query.q) {
             try {
                 let options = {
-                    search: request.query.q, // user query received in request
+                    search: request.query.q + " " + request.query['gender'], // user query received in request
                     part: "snippet",
-                    order: request.query.order || "viewCount", // if user provides order set the value else set as viewcount
+                    order: request.query.order || "rating", // if user provides order set the value else set as viewcount
                     type: request.query.type || "video",
-                    videoDefinition: request.query.videoDefinition || "any",
+                    videoDefinition: request.query.videoDefinition || "high",
                     videoType: "any",
                     maxResults: request.query.maxResults || 5
                 };
@@ -48,7 +48,7 @@ module.exports = {
                         console.log(videoData); //comment this console log
                         loopVideos(videoData, (elementsData) => {
                             //facebook messenger gallery template...
-                            var messageData = [{
+                            let messageData = [{
                                 "attachment": {
                                     "type": "template",
                                     "payload": {
@@ -57,13 +57,12 @@ module.exports = {
                                     }
                                 }
                             }];
-                            if (elementsData) {
+                            if (elementsData[0]) {
+                                console.log("sending videos...");
                                 client.setex(request.query.q, 7200, JSON.stringify(messageData));
                                 response.send(messageData);
                             } else {
-                                response.send([{
-                                    "text": "We are experiencing high load, please try again a bit later. Thank you!"
-                                }]);
+                                response.send([{"text": "We are experiencing high load, please try again a bit later. Thank you!"}]);
                             }
                             //console.log("messageData = " + JSON.stringify(messageData)); //comment this console log
                         });
@@ -84,7 +83,7 @@ module.exports = {
         client.get(query, function (err, data) {
             if (err) throw err;
             if (data != null) {
-                //console.log(data);
+                console.log("REDIS responded to query: " + query);
                 res.send(data);
             } else {
                 next();

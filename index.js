@@ -32,7 +32,7 @@ app.get('/yogaTips', callback.yogaTipsCB);
 app.get('/youtubeVideo/*', function (req, res) {
   console.log(req.params['0']);
   res.render('index', {
-    title: 'Video',
+    title: 'Workout Video',
     source: req.params['0']
   })
 })
