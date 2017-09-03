@@ -14,7 +14,7 @@ module.exports = {
                 meditationSub: "N",
                 exerciseSub: "N",
             },
-            date_created: Date.now
+            date_created: Date.now()
         });
         user.save(function (err) {
             if (err) {
