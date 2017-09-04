@@ -59,7 +59,7 @@ module.exports = {
                             }];
                             if (elementsData[0]) {
                                 console.log("sending videos...");
-                                client.setex(request.query.q, 7200, JSON.stringify(messageData));
+                                client.setex(request.query.q, 300, JSON.stringify(messageData));
                                 response.send(messageData);
                             } else {
                                 response.send([{"text": "We are experiencing high load, please try again a bit later. Thank you!"}]);
