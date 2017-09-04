@@ -27,11 +27,11 @@ const frameURL = "https://sheltered-dawn-53620.herokuapp.com/youtubeVideo/";
 
 module.exports = {
     youtubeController: function (request, response) {
-        console.log(request);
+        //console.log(request);
         if (request.query.q) {
             try {
                 let options = {
-                    search: request.query.q + " " + request.query['gender'], // user query received in request
+                    search: request.query.q, // user query received in request
                     part: "snippet",
                     order: request.query.order || "rating", // if user provides order set the value else set as viewcount
                     type: request.query.type || "video",
