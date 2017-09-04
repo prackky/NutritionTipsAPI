@@ -33,7 +33,7 @@ module.exports = {
                 let options = {
                     search: request.query.q, // user query received in request
                     part: "snippet",
-                    order: request.query.order || "rating", // if user provides order set the value else set as viewcount
+                    order: request.query.order || "relevance", // if user provides order set the value else set as viewcount
                     type: request.query.type || "video",
                     videoDefinition: request.query.videoDefinition || "high",
                     videoType: "any",
