@@ -37,7 +37,7 @@ module.exports = {
                     type: request.query.type || "video",
                     videoDefinition: request.query.videoDefinition || "high",
                     videoType: "any",
-                    maxResults: request.query.maxResults || 5
+                    maxResults: request.query.maxResults || 2
                 };
                 //*********************function to search the video on youtube - START ***************************
                 api.getVideoSearch(options, (err, res) => {
