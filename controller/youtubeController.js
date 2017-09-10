@@ -54,7 +54,16 @@ module.exports = {
                                     "payload": {
                                         "template_type": "generic",
                                         "elements": elementsData
+                                    },
+                                    "quick_replies": [{
+                                        "title": "Main Menu",
+                                        "block_names": ["Main Menu"]
+                                    },
+                                    {
+                                        "title": "Our Workouts",
+                                        "block_names": ["Workout"]
                                     }
+                                ]
                                 }
                             }];
                             if (elementsData[0]) {
@@ -104,7 +113,7 @@ var loopVideos = function (videoData, done) {
                 "buttons": [{
                         "type": "web_url",
                         "url": frameURL + videoData.items[i].id.videoId,
-                        "title": "Watch Youtube Video",
+                        "title": "Watch Workout Video",
                         "webview_height_ratio": "compact"
                     },
                     {
