@@ -54,16 +54,7 @@ module.exports = {
                                     "payload": {
                                         "template_type": "generic",
                                         "elements": elementsData
-                                    },
-                                    "quick_replies": [{
-                                        "title": "Main Menu",
-                                        "block_names": ["Main Menu"]
-                                    },
-                                    {
-                                        "title": "Our Workouts",
-                                        "block_names": ["Workout"]
                                     }
-                                ]
                                 }
                             }];
                             if (elementsData[0]) {
