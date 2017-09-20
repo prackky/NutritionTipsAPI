@@ -1,6 +1,6 @@
 {
   "name": "GymBo",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "request webhook",
   "main": "index.js",
   "scripts": {

@@ -38,6 +38,7 @@ app.get('/youtubeVideo/*', function (req, res) {
 })
 
 app.get('/user', user.userSave);
+app.get('/user/update', user.userUpdate);
 
 app.get('/videoChannel', youtube.cache, youtube.youtubeController);
 
