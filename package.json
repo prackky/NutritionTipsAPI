@@ -9,9 +9,9 @@
   "author": "Prakhar Rastogi",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.4",
+    "express": "^4.18.2",
     "express-basic-auth": "^1.1.2",
-    "mongoose": "^4.11.7",
+    "mongoose": "^4.13.21",
     "pug": "^2.0.0-rc.3",
     "request": "^2.81.0"
   }
